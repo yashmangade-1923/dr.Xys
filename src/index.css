@@ -1,0 +1,245 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+@import "tailwindcss";
+
+@theme {
+  /* — Primary Palette — */
+  --color-skeuo-bg: #F5F2EC;
+  --color-skeuo-bg-deep: #EDE9E3;
+  --color-skeuo-card: #FFFFFF;
+  --color-skeuo-card-hover: #FAFAF8;
+  --color-skeuo-inset: #E8E4DD;
+
+  /* — Accent Colours — */
+  --color-teal: #2A9D8F;
+  --color-teal-dark: #1F7A6F;
+  --color-teal-light: #D4F0EC;
+  --color-terracotta: #C47A5A;
+  --color-terracotta-light: #F5E0D5;
+
+  /* — Neutrals — */
+  --color-text-primary: #2D2D2D;
+  --color-text-secondary: #6B6860;
+  --color-text-muted: #9A968F;
+  --color-border: #DDD9D2;
+  --color-border-light: #ECEAE5;
+
+  /* — Status — */
+  --color-success: #4CAF7D;
+  --color-warning: #E0A458;
+  --color-danger: #D46B6B;
+
+  /* — Fonts — */
+  --font-serif: "DM Serif Display", Georgia, serif;
+  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+}
+
+:root {
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background-color: var(--color-skeuo-bg);
+  color: var(--color-text-primary);
+  overflow-x: hidden;
+  /* Subtle linen texture via CSS noise */
+  background-image:
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0, 0, 0, 0.008) 2px,
+      rgba(0, 0, 0, 0.008) 4px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 2px,
+      rgba(0, 0, 0, 0.008) 2px,
+      rgba(0, 0, 0, 0.008) 4px
+    );
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ——— Skeuomorphic Utility Classes ——— */
+
+/* Raised card — paper sitting on desk */
+.skeuo-card {
+  background: var(--color-skeuo-card);
+  border: 1px solid var(--color-border-light);
+  border-radius: 1.25rem;
+  box-shadow:
+    0 1px 0 0 rgba(255,255,255,0.9) inset,
+    0 2px 6px rgba(0,0,0,0.06),
+    0 8px 24px rgba(0,0,0,0.05);
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.skeuo-card:hover {
+  box-shadow:
+    0 1px 0 0 rgba(255,255,255,0.9) inset,
+    0 4px 12px rgba(0,0,0,0.08),
+    0 16px 40px rgba(0,0,0,0.07);
+}
+
+/* Inset / pressed element — like a pressed panel or text field */
+.skeuo-inset {
+  background: var(--color-skeuo-inset);
+  border: 1px solid var(--color-border);
+  border-radius: 0.75rem;
+  box-shadow:
+    inset 0 2px 4px rgba(0,0,0,0.08),
+    inset 0 1px 2px rgba(0,0,0,0.04),
+    0 1px 0 rgba(255,255,255,0.7);
+}
+
+/* Embossed button — raised look */
+.skeuo-btn {
+  background: linear-gradient(180deg, #329E91 0%, #2A9D8F 40%, #238B80 100%);
+  color: white;
+  border: 1px solid #1F7A6F;
+  border-radius: 0.875rem;
+  box-shadow:
+    0 1px 0 0 rgba(255,255,255,0.2) inset,
+    0 -1px 0 0 rgba(0,0,0,0.1) inset,
+    0 2px 6px rgba(42,157,143,0.25),
+    0 4px 12px rgba(0,0,0,0.08);
+  transition: all 0.15s ease;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.skeuo-btn:hover {
+  background: linear-gradient(180deg, #37AEA0 0%, #2FA898 40%, #278E82 100%);
+  box-shadow:
+    0 1px 0 0 rgba(255,255,255,0.25) inset,
+    0 -1px 0 0 rgba(0,0,0,0.1) inset,
+    0 4px 10px rgba(42,157,143,0.3),
+    0 8px 20px rgba(0,0,0,0.1);
+  transform: translateY(-1px);
+}
+
+.skeuo-btn:active {
+  transform: translateY(0px);
+  box-shadow:
+    inset 0 2px 4px rgba(0,0,0,0.2),
+    0 1px 2px rgba(0,0,0,0.05);
+  background: linear-gradient(180deg, #238B80 0%, #2A9D8F 100%);
+}
+
+.skeuo-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Embossed button — secondary / warm */
+.skeuo-btn-warm {
+  background: linear-gradient(180deg, #D08A68 0%, #C47A5A 40%, #B06D4F 100%);
+  color: white;
+  border: 1px solid #A3604A;
+  border-radius: 0.875rem;
+  box-shadow:
+    0 1px 0 0 rgba(255,255,255,0.2) inset,
+    0 -1px 0 0 rgba(0,0,0,0.1) inset,
+    0 2px 6px rgba(196,122,90,0.25),
+    0 4px 12px rgba(0,0,0,0.08);
+  transition: all 0.15s ease;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.skeuo-btn-warm:active {
+  transform: translateY(0px);
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.2);
+}
+
+/* Sidebar utility */
+.skeuo-sidebar {
+  background: linear-gradient(180deg, #FAF8F5 0%, #F5F2EC 100%);
+  border-right: 1px solid var(--color-border);
+  box-shadow:
+    1px 0 0 rgba(255,255,255,0.5),
+    2px 0 8px rgba(0,0,0,0.04);
+}
+
+/* Input field — indented paper look */
+.skeuo-input {
+  background: #F8F6F2;
+  border: 1px solid var(--color-border);
+  border-radius: 0.75rem;
+  padding: 0.75rem 1rem;
+  color: var(--color-text-primary);
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  box-shadow:
+    inset 0 2px 4px rgba(0,0,0,0.06),
+    inset 0 1px 2px rgba(0,0,0,0.03),
+    0 1px 0 rgba(255,255,255,0.7);
+  transition: all 0.2s ease;
+  outline: none;
+}
+
+.skeuo-input:focus {
+  border-color: var(--color-teal);
+  box-shadow:
+    inset 0 2px 4px rgba(0,0,0,0.06),
+    inset 0 1px 2px rgba(0,0,0,0.03),
+    0 0 0 3px rgba(42,157,143,0.12),
+    0 1px 0 rgba(255,255,255,0.7);
+}
+
+.skeuo-input::placeholder {
+  color: var(--color-text-muted);
+}
+
+/* ——— Animations ——— */
+@keyframes gentle-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+
+@keyframes soft-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+
+@keyframes tactile-press {
+  0% { transform: scale(1); }
+  50% { transform: scale(0.96); }
+  100% { transform: scale(1); }
+}
+
+.animate-gentle-float {
+  animation: gentle-float 4s ease-in-out infinite;
+}
+
+.animate-soft-pulse {
+  animation: soft-pulse 2s ease-in-out infinite;
+}
+
+/* ——— Scrollbar — warm minimal ——— */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-text-muted);
+}

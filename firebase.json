@@ -1,0 +1,17 @@
+{
+    "hosting": {
+        "site": "drxyp-f724e-8ece0",
+        "public": "dist",
+        "ignore": [
+            "firebase.json",
+            "**/.*",
+            "**/node_modules/**"
+        ],
+        "rewrites": [
+            {
+                "source": "**",
+                "destination": "/index.html"
+            }
+        ]
+    }
+}
